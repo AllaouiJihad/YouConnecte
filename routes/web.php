@@ -24,6 +24,7 @@ Route::get('/signup', [AuthController::class, 'showRegister'])->name('register')
 Route::post('/signup', [AuthController::class, 'signup'])->name('register');
 Route::get('/signin', [AuthController::class, 'showLogin'])->name('signin');
 Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::post('/',[PostController::class, 'store'])->name('addpost');

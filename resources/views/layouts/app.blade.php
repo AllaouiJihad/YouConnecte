@@ -53,9 +53,8 @@
                         <svg class="mr-4 h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         More
                         </a>
-
                             <button class="bg-blue-400 text-white w-48 mt-5 hover:bg-white-600 text-blue font-bold py-2 px-4 rounded-full">
-                               logout
+                               <a href="{{route('logout')}}">logout</a>
                                 </button>
                     </nav>
 
@@ -205,36 +204,6 @@
 
                     <hr class="border-gray-600">
 
-                        <!--first person who to follow-->
-
-                    <div class="flex flex-shrink-0">
-                        <div class="flex-1 ">
-                            <div class="flex items-center w-48">
-                                <div>
-                                  <img class="inline-block h-10 w-auto rounded-full ml-4 mt-2" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
-                                </div>
-                                <div class="ml-3 mt-3">
-                                  <p class="text-base leading-6 font-medium text-blue">
-                                    Sonali Hirave
-                                  </p>
-                                  <p class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                    @ShonaDesign
-                                  </p>
-                                </div>
-                              </div>
-
-                        </div>
-                        <div class="flex-1 px-4 py-2 m-2">
-                            <a href="" class=" float-right">
-                                <button class="bg-transparent hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white  rounded-full">
-                                    Follow
-                                  </button>
-                            </a>
-
-                        </div>
-                    </div>
-                    <hr class="border-gray-600">
-
                     <!--second person who to follow-->
 
                     <div class="flex flex-shrink-0">
@@ -256,7 +225,7 @@
                         </div>
                         <div class="flex-1 px-4 py-2 m-2">
                             <a href="" class=" float-right">
-                                <button class="bg-transparent hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
+                                <button class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
                                     Follow
                                   </button>
                             </a>

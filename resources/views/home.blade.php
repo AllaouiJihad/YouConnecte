@@ -21,19 +21,19 @@
     <!--middle creat tweet-->
     <form method="post" action="{{route('addpost')}}">
         @csrf
-        
+
     <div class="flex">
         <div class="m-2 w-10 py-1">
             <img class="inline-block h-10 w-10 rounded-full" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
         </div>
-        
-            
+
+
         <div class="flex-1 px-2 pt-2 mt-2">
-            
-                
+
+
              <textarea name="content" class=" bg-transparent text-gray-400 font-medium text-lg w-full" rows="2" cols="50" placeholder="What's happening?"></textarea>
         </div>
-    
+
     </div>
     <!--middle creat tweet below icons-->
     <div class="flex">
@@ -83,7 +83,7 @@
 
 
 @foreach($posts as $post)
-    
+
 
 <!--first tweet start-->
 <div class="flex flex-shrink-0 p-4 pb-0">
@@ -148,14 +148,8 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
   </div>
   @endforeach
-    <!--second tweet-->
-
-
 </div>
 @endsection
