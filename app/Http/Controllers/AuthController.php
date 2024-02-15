@@ -15,7 +15,7 @@ class AuthController extends Controller
 
     public function showLogin()
     {
-        return view('login');
+        return view('register');
     }
 
     public function signup(Request $request){
@@ -26,7 +26,7 @@ class AuthController extends Controller
           'password' => 'required|string|min:8|confirmed',
       ]);
 
-
+      dd($validatedData);
       $user = User::create([
           'name' => $validatedData['name'],
           'email' => $validatedData['email'],
@@ -36,7 +36,8 @@ class AuthController extends Controller
 
       if ($user) {
           // Authentication successful
-          return redirect()->route('login'); // Redirect to the intended page or your dashboard
+          dd($user);
+        //   return redirect()->route('register'); // Redirect to the intended page or your dashboard
       } else {
           // Authentication failed
           return redirect()->route('register');
@@ -56,7 +57,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication successful
-            return redirect()->route('home'); // Redirect to the intended page or your dashboard
+            return redirect()->route('welcome'); // Redirect to the intended page or your dashboard
         } else {
             // Authentication failed
             return redirect()->route('register');
@@ -67,6 +68,6 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('login');
+        return redirect()->route('register');
     }
 }
