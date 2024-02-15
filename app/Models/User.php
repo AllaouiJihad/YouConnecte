@@ -35,5 +35,8 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+    public function post(){
+        return $this->hasMany(User::class);
+    }
 
 }

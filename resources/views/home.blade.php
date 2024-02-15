@@ -19,13 +19,21 @@
 
     <hr class="border-gray-600">
     <!--middle creat tweet-->
+    <form method="post" action="{{route('addpost')}}">
+        @csrf
+        
     <div class="flex">
         <div class="m-2 w-10 py-1">
             <img class="inline-block h-10 w-10 rounded-full" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
         </div>
+        
+            
         <div class="flex-1 px-2 pt-2 mt-2">
-            <textarea class=" bg-transparent text-gray-400 font-medium text-lg w-full" rows="2" cols="50" placeholder="What's happening?"></textarea>
+            
+                
+             <textarea name="content" class=" bg-transparent text-gray-400 font-medium text-lg w-full" rows="2" cols="50" placeholder="What's happening?"></textarea>
         </div>
+    
     </div>
     <!--middle creat tweet below icons-->
     <div class="flex">
@@ -61,11 +69,12 @@
         </div>
 
         <div class="flex-1">
-            <button class="bg-white-400 mt-5 hover:bg-white-600 text-blue font-bold py-2 px-8 rounded-full mr-8 float-right">
+            <button type="submit" class="bg-white-400 mt-5 hover:bg-white-600 text-blue font-bold py-2 px-8 rounded-full mr-8 float-right">
                 POST
               </button>
         </div>
     </div>
+</form>
 
     <hr class="border-800 border-4">
 
@@ -73,6 +82,8 @@
 
 
 
+@foreach($posts as $post)
+    
 
 <!--first tweet start-->
 <div class="flex flex-shrink-0 p-4 pb-0">
@@ -83,9 +94,9 @@
         </div>
         <div class="ml-3">
           <p class="text-base leading-6 font-medium text-blue">
-            Sonali Hirave
+            {{$post->user->name}}
             <span class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                @ShonaDesign . 16 April
+                 {{$post->created_at->diffForHumans()}}
               </span>
                </p>
         </div>
@@ -94,10 +105,7 @@
 </div>
 <div class="pl-16">
     <p class="text-base width-auto font-medium text-blue flex-shrink">
-      Day 07 of the challenge <span class="text-blue-400">#100DaysOfCode</span>
-      I was wondering what I can do with , so just started building Twitter  UI using Tailwind and so far it looks so promising. I will post my code after completion.
-      [07/100]
-      <span class="text-blue-400"> #WomenWhoCode #CodeNewbie</span>
+        {{$post->content}}
     </p>
 
 
@@ -145,6 +153,7 @@
     </div>
 
   </div>
+  @endforeach
     <!--second tweet-->
 
 
