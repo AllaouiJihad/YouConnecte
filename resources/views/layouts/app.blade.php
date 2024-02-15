@@ -54,8 +54,8 @@
                         More
                         </a>
 
-                            <button class="bg-white-400 w-48 mt-5 hover:bg-white-600 text-blue font-bold py-2 px-4 rounded-full">
-                                Tweet
+                            <button class="bg-blue-400 text-white w-48 mt-5 hover:bg-white-600 text-blue font-bold py-2 px-4 rounded-full">
+                               logout
                                 </button>
                     </nav>
 
