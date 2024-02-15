@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -22,25 +23,26 @@ class AuthController extends Controller
 
         $validatedData = $request->validate([
           'name' => 'required|string|max:255',
-          'email' => 'required|email|unique:users|max:255',
-          'password' => 'required|string|min:8|confirmed',
+          'email' => 'required|string|email|max:255|unique:users',
+          'password' => 'required|string|min:8',
       ]);
 
       dd($validatedData);
       $user = User::create([
           'name' => $validatedData['name'],
           'email' => $validatedData['email'],
-          'password' => bcrypt($validatedData['password']),
+          'password' => Hash::make($request->password),
       ]);
 
 
       if ($user) {
-          // Authentication successful
-          dd($user);
-        //   return redirect()->route('register'); // Redirect to the intended page or your dashboard
+
+          return redirect()->route('login');
       } else {
           // Authentication failed
-          return redirect()->route('register');
+          return redirect()->route('register')->withErrors([
+            'email' => 'The provided credentials do not match ourrecords.',
+        ]);
       }
       }
 
@@ -52,22 +54,22 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Attempt to authenticate the user
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            // Authentication successful
-            return redirect()->route('welcome'); // Redirect to the intended page or your dashboard
+        if (Auth::attempt($credentials, true)) {
+            $request->session()->regenerate();
+            return redirect()->route('home');
         } else {
-            // Authentication failed
-            return redirect()->route('register');
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
-
-        return redirect()->route('register');
+        $request->session()->invalidate();
+        return redirect()->route('login');
     }
 }
