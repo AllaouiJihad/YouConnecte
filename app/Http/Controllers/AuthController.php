@@ -27,7 +27,7 @@ class AuthController extends Controller
           'password' => 'required|string|min:8',
       ]);
 
-      dd($validatedData);
+
       $user = User::create([
           'name' => $validatedData['name'],
           'email' => $validatedData['email'],
@@ -37,7 +37,7 @@ class AuthController extends Controller
 
       if ($user) {
 
-          return redirect()->route('login');
+          return redirect()->route('signin');
       } else {
           // Authentication failed
           return redirect()->route('register')->withErrors([
@@ -56,9 +56,9 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, true)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('home');
+            return redirect()->route('welcome');
         } else {
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
@@ -70,6 +70,6 @@ class AuthController extends Controller
     {
         Auth::logout();
         $request->session()->invalidate();
-        return redirect()->route('login');
+        return redirect()->route('signin');
     }
 }
