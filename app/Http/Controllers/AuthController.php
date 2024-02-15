@@ -1,52 +1,72 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\user;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function showRegister()
     {
-
-        $request->validate([
-            'name'=> 'required',
-            'email'=> 'required|email|unique:users',
-            'password'=> 'required|min:6',
-        ]);
-
-       $user = User::create([
-            'name'=> $request->input('name'),
-            'email'=> $request->input('email'),
-            'password'=> Hash::make($request->input('password')),
-        ]);
-        session(['user' => $user]);
-
-        return redirect()->route('signin');
-
-     }
-
-    public function login(Request $request)
-    {
-        $user = User::where('email', $request->email)->first();
-
-        if ($user && Hash::check($request->password, $user->password)) {
-
-            session(['user' => $user]);
-
-            return redirect()->route('welcome');
-        }
-
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        return view('register');
     }
 
-    public function logout(Request $request)
+    public function showLogin()
     {
-    $request->session()->invalidate();
+        return view('login');
+    }
 
-        return redirect()->route('welcome');
+    public function signup(Request $request){
+
+        $validatedData = $request->validate([
+          'name' => 'required|string|max:255',
+          'email' => 'required|email|unique:users|max:255',
+          'password' => 'required|string|min:8|confirmed',
+      ]);
+
+
+      $user = User::create([
+          'name' => $validatedData['name'],
+          'email' => $validatedData['email'],
+          'password' => bcrypt($validatedData['password']),
+      ]);
+
+
+      if ($user) {
+          // Authentication successful
+          return redirect()->route('login'); // Redirect to the intended page or your dashboard
+      } else {
+          // Authentication failed
+          return redirect()->route('register');
+      }
+      }
+
+      public function signin(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Attempt to authenticate the user
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication successful
+            return redirect()->route('home'); // Redirect to the intended page or your dashboard
+        } else {
+            // Authentication failed
+            return redirect()->route('register');
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('login');
     }
 }
-
