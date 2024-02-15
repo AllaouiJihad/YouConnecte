@@ -20,4 +20,7 @@ class PostController extends Controller
         // dd($posts);
         return view('home', compact('posts'));
     }
+    public function getPosts(){
+        $posts = Post::where('user_id', Auth::id())->all();
+    }
 }
