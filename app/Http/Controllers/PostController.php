@@ -21,6 +21,31 @@ class PostController extends Controller
         return view('home', compact('posts'));
     }
     public function getPosts(){
-        $posts = Post::where('user_id', Auth::id())->all();
+        $posts = Post::where('user_id', Auth::id())->get();
+        return view('profile', compact('posts'));
+    }
+    public function delete($id)
+    {
+        $post = post::find($id);
+        $post->delete();
+        return redirect()->route('profile');
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $post = Post::find($id);
+
+        $request->validate([
+            'content' => 'required',
+
+        ]);
+
+        $post->update([
+            "content" => $request->content,
+
+        ]);
+
+        return redirect()->route('profile');
     }
 }

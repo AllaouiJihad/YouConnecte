@@ -1,331 +1,87 @@
-<style>
-    * {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-  transition: background-color 0.6s ease, color 0.3s ease, border-color 0.6s ease;
-}
 
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Ubuntu, "Helvetica Neue", sans-serif;
-  color: var(--primary-color);
-  background-color: var(--bkg-color);
-}
+@extends('layouts/app')
+@section('content')
 
-:root {
-  --bkg-color: #15202b;
-  --wallpaper-color: #3e5366;
+<div class="w-3/5 border border-gray-600 h-auto  border-t-0">
+    <!--middle wall-->
 
-  --primary-color: white;
-  --secondary-text: #8898a6;
-
-  --border-color: #38444d;
-
-  --pfp-border: 4px;
-
-  /* Color accents*/
-  --classic-blue: 29, 161, 241;
-  --avocado-green: 25, 191, 100;
-  --orange-sun: 255, 174, 30;
-  /* --- */
-
-  --accent-color-rgb: var(--orange-sun);
-  --accent-color: rgb(var(--accent-color-rgb));
-}
-
-.light-theme {
-  --bkg-color: white;
-  --wallpaper-color: #C4CFD6;
-
-  --primary-color: #0F1419;
-  --secondary-text: #5B6F83;
-
-  --border-color: #ECEEF0;
-
-  --pfp-border: 4px;
-}
-
-.dark-theme {
-  --bkg-color: #000000;
-  --wallpaper-color: #2F3336;
-
-  --primary-color: #D9D9D9;
-  --secondary-text: #6D767D;
-
-  --border-color: #2F3336;
-
-  --pfp-border: 4px;
-}
-
-.content {
-  width: 600px;
-  border: 1px solid var(--border-color);
-  margin: 40px auto;
-}
-
-/* ------ General ------ */
-.header {
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--primary-color);
-}
-
-.secondary {
-  color: var(--secondary-text);
-}
-
-.subtext {
-  font-size: 14px;
-  color: var(--secondary-text);
-
-  /* optional */
-  margin-top: 3px;
-}
-
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-}
-
-/* ------ Navigation ------ */
-.navigation {
-  display: grid;
-  grid-template: auto auto / 60px auto;
-  padding: 8px;
-}
-
-.navigation > div {
-  /*   border: 1px solid red; */
-}
-
-.arrow_back {
-  grid-row: 1/3;
-  align-self: center;
-  margin-left: 10px;
-
-  /*   border: 1px solid red; */
-  cursor: pointer;
-  position: relative;
-}
-
-.arrow_back > svg {
-  fill: var(--accent-color);
-  width: 25px;
-}
-
-/* Circle */
-.arrow_back:hover:after {
-  opacity: 0.1;
-}
-
-.arrow_back:after {
-  content: "";
-
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-color: var(--accent-color);
-
-  left: -6px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-  border-radius: 50%;
-
-  transition: opacity 0.3s;
-}
-
-/* ------ WALLPAPER ------ */
-.wallpaper {
-  background-color: var(--wallpaper-color);
-  height: 200px;
-}
-
-/* ------ Pre-bio ------ */
-.pre-bio {
-  display: flex;
-/*     border: 1px solid red; */
-
-  justify-content: flex-end;
-  position: relative;
-  padding-bottom: 12px;
-}
-
-.pfp {
-  background-color: salmon;
-  width: calc(130px - 2 * var(--pfp-border));
-  height: calc(130px - 2 * var(--pfp-border));
-  position: absolute;
-
-  bottom: 0%;
-  left: 0%;
-  border-radius: 50%;
-
-  border: var(--pfp-border) solid var(--bkg-color);
-
-  background-image: url("https://pbs.twimg.com/profile_images/1370524209458388996/ORUlQRtS_200x200.jpg");
-  background-size: cover;
-
-  cursor: pointer;
-}
-
-.pfp:hover:after {
-  content: "";
-
-  background-color: var(--bkg-color);
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-
-  position: absolute;
-  opacity: 0.1;
-}
-
-.btn {
-  font-weight: 600;
-  border: 1px solid var(--accent-color);
-  color: var(--accent-color);
-  padding: 12px 20px;
-  border-radius: 99999px;
-  cursor: pointer;
-  background-color: rgba(var(--accent-color-rgb), 0);
-  transition: background-color 0.2s;
-}
-
-.btn:hover {
-  background-color: rgba(var(--accent-color-rgb), 0.1);
-}
-
-/* ------ BIO ------ */
-.bio {
-  padding: 15px;
-  padding-bottom: 0px;
-}
-
-.bio > div {
-  margin-bottom: 12px;
-  color: var(--primary-color);
-}
-
-/* ------ Tabs ------ */
-.tabs {
-  display: flex;
-  align-items: stretch;
-
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--secondary-text);
-}
-
-.tabs > div {
-  flex-grow: 1;
-  text-align: center;
-
-  padding: 18px;
-
-  position: relative;
-  cursor: pointer;
-  transition: all 0.2s;
-
-  background-color: rgba(var(--accent-color-rbg), 0);
-}
-
-.tabs > div:hover {
-  color: var(--accent-color);
-  background-color: rgba(var(--accent-color-rgb), 0.1);
-}
-
-.selected {
-  color: var(--accent-color);
-  border-bottom: 3px solid var(--accent-color);
-}
-
-/* -------------------- */
-/* OTHER */
-/* -------------------- */
-.controls {
-  margin: auto;
-  border: 1px solid var(--border-color);
-  width: 600px;
-  margin-bottom: 150px;
-  padding: 10px;
-}
-
-button {
-  padding: 10px;
-  cursor: pointer;
-}
-</style>
-<body>
-    <div class="content">
-      <div class="navigation">
-        <div class="arrow_back">arrow</div>
-        <div class="header">Codegem</div>
-        <div class="subtext">25 Tweets</div>
-      </div>
-      <div class="wallpaper">
-      </div>
-      <div class="bio">
-
-        <div class="pre-bio">
-          <div class="pfp"></div>
-
-          <div class="btn">Edit profile</div>
-        </div>
-
-        <div>
-          <div class="header">Codegem</div>
-          <div class="subtext">@codegem_io</div>
-        </div>
-
-        <div>🚀 We show you how to code cool stuff</div>
-        <div><a href="https://linktr.ee/codegem">linktr.ee/codegem</a>
-          <span class="secondary">Joined March 2021</span></div>
-
-        <div>
-          15 <span class="secondary">Following</span>
-          12 <span class="secondary">Followers</span>
-        </div>
-      </div>
-
-      <div class="tabs">
-        <div class="selected">Tweets</div>
-        <div>Tweets & replies</div>
-        <div>Media</div>
-        <div>Likes</div>
-      </div>
+    <div class="flex justify-center items-center flex-col">
+        <!-- User Photo -->
+        <img class="h-24 w-24 rounded-full mb-4" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="">
+        <!-- User Name -->
+        <h2 class="text-xl font-semibold text-blue">{{ auth()->user()->name }}</h2>
+        <!-- User Email -->
+        <p class="text-gray-600">{{ auth()->user()->email }}</p>
+        <!-- Edit Profile Button -->
+        <button class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Edit Profile</button>
     </div>
 
+@foreach($posts as $post)
 
-    <div class="controls">
-      <button onclick="switchTheme();" class="btn">Switch theme</button>
+
+<!--first tweet start-->
+<div class="flex flex-shrink-0 p-4 pb-0">
+    <a href="#" class="flex-shrink-0 group block">
+      <div class="flex items-center">
+        <div>
+          <img class="inline-block h-10 w-10 rounded-full" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
+        </div>
+        <div class="ml-3">
+          <p class="text-base leading-6 font-medium text-blue">
+            {{$post->user->name}}
+            <span class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
+                 {{$post->created_at->diffForHumans()}}
+              </span>
+               </p>
+        </div>
+      </div>
+    </a>
+</div>
+<div class="pl-16">
+    <p class="text-base width-auto font-medium text-blue flex-shrink">
+        {{$post->content}}
+    </p>
+
+
+    <div class="flex">
+        <div class="w-full">
+
+            <div class="flex items-center">
+                <div class="flex-1 text-center">
+                    <a href="#" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
+                        <svg class="text-center h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                      </a>
+                </div>
+
+                <div class="flex-1 text-center py-2 m-2">
+                    <a href="#" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
+                        <svg class="text-center h-7 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                </a>
+                </div>
+                <div class="flex-1 text-center py-2 m-2">
+                    <button id="editButton" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
+                        <svg class="text-center h-7 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <form action="{{ route('delete', $post->id) }}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
+                        <svg class="text-center h-7 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M8.257 6l-.429-2H4.172l-.428 2M6 6V4.1c0-.694.332-1.313.843-1.703C6.552 2.196 6.98 2 7.429 2h9.143c.45 0 .877.196 1.586.397.511.39.843 1.009.843 1.703V6M8 9v10a2 2 0 002 2h4a2 2 0 002-2V9M3 6V4h18v2"></path>
+                        </svg>
+                    </button>
+                </form>
+
+            </div>
+        </div>
     </div>
-    </body>
-<script>
-    function main() {
-  const back = document.querySelector(".arrow_back");
+  </div>
+  @endforeach
 
-  back.innerHTML =
-    '<svg viewBox="0 0 24 24" class="r-61mi1v r-4qtqp9 r-yyyyoo r-1q142lx r-50lct3 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1srniue"><g><path d="M20 11H7.414l4.293-4.293c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0l-6 6c-.39.39-.39 1.023 0 1.414l6 6c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L7.414 13H20c.553 0 1-.447 1-1s-.447-1-1-1z"></path></g></svg>';
-
-  const tabs = document.querySelectorAll(".tabs > div");
-
-  const selectTab = (tab) => () => {
-    tabs.forEach(tab => tab.classList.remove("selected"));
-    tab.classList.add("selected");
-  };
-
-  tabs.forEach(tab => {
-    tab.addEventListener("click", selectTab(tab));
-  });
-}
-
-window.addEventListener("load", main);
-
-
-function switchTheme() {
-   document.body.classList.toggle('light-theme');
-   // document.body.classList.toggle('dark-theme');
-}
+</div>
+@endsection
 </script>

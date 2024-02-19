@@ -28,3 +28,15 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::post('/',[PostController::class, 'store'])->name('addpost');
+
+
+Route::get('/profile',function(){return view('profile');})->name('profile');
+
+Route::get('/profile', [PostController::class,'getPosts']
+)->name('profile')->middleware('auth');
+
+Route::delete('/delete/{id}',[PostController::class,'delete'])->name('delete');
+
+Route::put('/update/{id}', [PostController::class, 'update'])->name('update');
+
+Route::get('/message',function(){return view('message');})->name('message');
