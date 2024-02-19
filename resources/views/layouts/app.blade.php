@@ -45,7 +45,7 @@
                         <svg class="mr-4 h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
                         Lists
                         </a>
-                            <a href="#" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
+                            <a href="{{route('profile')}}" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
                         <svg class="mr-4 h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                         Profile
                         </a>
@@ -53,9 +53,8 @@
                         <svg class="mr-4 h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         More
                         </a>
-
                             <button class="bg-blue-400 text-white w-48 mt-5 hover:bg-white-600 text-blue font-bold py-2 px-4 rounded-full">
-                               logout
+                               <a href="{{route('logout')}}">logout</a>
                                 </button>
                     </nav>
 
@@ -205,36 +204,6 @@
 
                     <hr class="border-gray-600">
 
-                        <!--first person who to follow-->
-
-                    <div class="flex flex-shrink-0">
-                        <div class="flex-1 ">
-                            <div class="flex items-center w-48">
-                                <div>
-                                  <img class="inline-block h-10 w-auto rounded-full ml-4 mt-2" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
-                                </div>
-                                <div class="ml-3 mt-3">
-                                  <p class="text-base leading-6 font-medium text-blue">
-                                    Sonali Hirave
-                                  </p>
-                                  <p class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                    @ShonaDesign
-                                  </p>
-                                </div>
-                              </div>
-
-                        </div>
-                        <div class="flex-1 px-4 py-2 m-2">
-                            <a href="" class=" float-right">
-                                <button class="bg-transparent hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white  rounded-full">
-                                    Follow
-                                  </button>
-                            </a>
-
-                        </div>
-                    </div>
-                    <hr class="border-gray-600">
-
                     <!--second person who to follow-->
 
                     <div class="flex flex-shrink-0">
@@ -256,7 +225,7 @@
                         </div>
                         <div class="flex-1 px-4 py-2 m-2">
                             <a href="" class=" float-right">
-                                <button class="bg-transparent hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
+                                <button class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
                                     Follow
                                   </button>
                             </a>

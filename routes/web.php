@@ -26,6 +26,7 @@ Route::get('/signup', [AuthController::class, 'showRegister'])->name('register')
 Route::post('/signup', [AuthController::class, 'signup'])->name('register');
 Route::get('/signin', [AuthController::class, 'showLogin'])->name('signin');
 Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/post/{id}', [PostController::class, 'getPost'])->name('getPost');
 Route::post('/post', [PostController::class, 'addComment'])->name('comments.store');
@@ -33,3 +34,15 @@ Route::post('/like',[PostController::class, 'addLike'])->name('like.store');
 
 
 
+
+
+Route::get('/profile',function(){return view('profile');})->name('profile');
+
+Route::get('/profile', [PostController::class,'getPosts']
+)->name('profile')->middleware('auth');
+
+Route::delete('/delete/{id}',[PostController::class,'delete'])->name('delete');
+
+Route::put('/update/{id}', [PostController::class, 'update'])->name('update');
+
+Route::get('/message',function(){return view('message');})->name('message');
