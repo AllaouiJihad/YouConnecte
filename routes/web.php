@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class,'index']
 )->name('welcome')->middleware('auth');
+Route::post('/',[PostController::class, 'store'])->name('addpost')->middleware('auth');
+
 
 
 Route::get('/signup', [AuthController::class, 'showRegister'])->name('register');
@@ -25,5 +27,9 @@ Route::post('/signup', [AuthController::class, 'signup'])->name('register');
 Route::get('/signin', [AuthController::class, 'showLogin'])->name('signin');
 Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
 
+Route::get('/post/{id}', [PostController::class, 'getPost'])->name('getPost');
+Route::post('/post', [PostController::class, 'addComment'])->name('comments.store');
+Route::post('/like',[PostController::class, 'addLike'])->name('like.store');
 
-Route::post('/',[PostController::class, 'store'])->name('addpost');
+
+
