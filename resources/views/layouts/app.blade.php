@@ -205,7 +205,7 @@
                     <hr class="border-gray-600">
 
                     <!--second person who to follow-->
-
+                    @foreach($users as $user)
                     <div class="flex flex-shrink-0">
                         <div class="flex-1 ">
                             <div class="flex items-center w-48">
@@ -214,7 +214,7 @@
                                 </div>
                                 <div class="ml-3 mt-3">
                                   <p class="text-base leading-6 font-medium text-blue">
-                                    Sonali Hirave
+                                    {{$user->name}}
                                   </p>
                                   <p class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
                                     @ShonaDesign
@@ -234,6 +234,7 @@
                     </div>
 
                     <hr class="border-gray-600">
+                    @endforeach
 
 
 
