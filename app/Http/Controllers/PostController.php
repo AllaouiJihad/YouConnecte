@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,11 +20,13 @@ class PostController extends Controller
     }
     public function index(){
         $posts = Post::with('user')->with('likes')->get();
+        $users = User::where('id', '!=', Auth::id())->get();
+        $like_count=[];
         foreach($posts as $post){
-            $likes = Like::where('post_id',$post->id)->count();
+            $like_count[$post->id] = Like::where('post_id',$post->id)->count();
         }
         
-        return view('home', compact('posts', 'likes'));
+        return view('home', compact('posts', 'like_count','users'));
     }
     public function getPosts(){
         $posts = Post::with('likes')->where('user_id', Auth::id())->get();
@@ -68,11 +71,18 @@ class PostController extends Controller
         return redirect()->route("getPost",$comment->post_id);
     }
 
-    public function addLike($id){
-        $like = new Like();
-        $like->user_id = Auth::id();
-        $like->post_id = $id;
-        $like->save();
+    public function addLike(Request $request){
+        $like = Like::where('user_id',Auth::id())->where('post_id',$request->input('post_id'))->first();
+       
+        if($like){
+            $like->delete();
+        }
+        else{
+            $like = new Like();
+            $like->user_id = Auth::id();
+            $like->post_id = $request->input('post_id');
+            $like->save();
+        }
         return redirect()->route("welcome");
     }
 }
