@@ -48,4 +48,12 @@ Route::put('/update/{id}', [PostController::class, 'update'])->name('update');
 
 Route::get('/message',function(){return view('message');})->name('message');
 
+// Route to follow a user
+Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow');
+
+// Route to unfollow a user
+Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
 Route::get('/profile/{id}',[UserController::class,'profile'])->name('profile');

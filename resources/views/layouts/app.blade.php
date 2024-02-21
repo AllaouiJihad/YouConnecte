@@ -6,6 +6,7 @@
         <title>Youconnect</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ asset('css/msg.scss') }}">
 
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
@@ -69,7 +70,7 @@
                                 Sonali Hirave
                                 </p>
                                 <p class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                @ 
+                                @
                                 </p>
                             </div>
                             </div>
@@ -92,7 +93,7 @@
                         </svg>
                       </button>
 
-                    <input type="search" name="search" placeholder="Search Twitter" class="bg-white-800 h-10 px-10 pr-5 w-full rounded-full text-sm focus:outline-none bg-purple-white shadow rounded border-0">
+                    <input type="search" name="search" placeholder="Search" class="bg-white-800 h-10 px-10 pr-5 w-full rounded-full text-sm focus:outline-none bg-purple-white shadow rounded border-0">
 
                 </div>
 
@@ -194,15 +195,15 @@
 
                 <!--third-people suggetion to follow section-->
 
-                <div class="max-w-sm rounded-lg bg-white-800 overflow-hidden shadow-lg m-4 mr-20">
-                    <div class="flex">
-                        <div class="flex-1 m-2">
-                            <h2 class="px-4 py-2 text-xl w-48 font-semibold text-blue">Who to follow</h2>
-                        </div>
-                    </div>
 
+<div class="max-w-sm rounded-lg bg-white-800 overflow-hidden shadow-lg m-4 mr-20">
+    <div class="flex">
+        <div class="flex-1 m-2">
+            <h2 class="px-4 py-2 text-xl w-48 font-semibold text-blue">Who to follow</h2>
+        </div>
+    </div>
 
-                    <hr class="border-gray-600">
+    <hr class="border-gray-600">
 
                     <!--second person who to follow-->
                     @foreach($users as $user)
@@ -237,17 +238,15 @@
                     <hr class="border-gray-600">
                     @endforeach
 
+    <!-- Show more -->
+    <div class="flex">
+        <div class="flex-1 p-4">
+            <h2 class="px-4 ml-2 w-48 font-bold text-blue-400">Show more</h2>
+        </div>
+    </div>
+</div>
 
 
-                    <!--show more-->
-
-                    <div class="flex">
-                        <div class="flex-1 p-4">
-                            <h2 class="px-4 ml-2 w-48 font-bold text-blue-400">Show more</h2>
-                        </div>
-                    </div>
-
-                </div>
 
             <div class="flow-root m-6 inline">
                 <div class="flex-1">

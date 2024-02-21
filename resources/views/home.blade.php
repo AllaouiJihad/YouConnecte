@@ -140,27 +140,6 @@
                     </button>
                 </form>
                 </div>
-
-                <div class="flex-1 text-center py-2 m-2">
-                    <a href="#" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
-                        <svg class="text-center h-7 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                </a>
-                </div>
-                <div class="flex-1 text-center py-2 m-2">
-                    <a href="#" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
-                        <svg class="text-center h-7 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                          </svg>
-
-                    </a>
-                </div>
-                <div class="flex-1 text-center py-2 m-2">
-                    <a href="#" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
-                        <svg class="text-center h-7 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M8.257 6l-.429-2H4.172l-.428 2M6 6V4.1c0-.694.332-1.313.843-1.703C6.552 2.196 6.98 2 7.429 2h9.143c.45 0 .877.196 1.586.397.511.39.843 1.009.843 1.703V6M8 9v10a2 2 0 002 2h4a2 2 0 002-2V9M3 6V4h18v2"></path>
-                          </svg>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
