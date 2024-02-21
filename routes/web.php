@@ -56,4 +56,4 @@ Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->nam
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
-Route::get('/profile/{id}',[UserController::class,'profile'])->name('profile');
+Route::get('/profile/{id}',[UserController::class,'profile'])->name('profile_user');

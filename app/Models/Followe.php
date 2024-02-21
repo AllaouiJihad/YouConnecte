@@ -12,4 +12,10 @@ class Followe extends Model
         'user_auth',
         'user_follower',
     ];
+    public function user(){
+        return $this->belongsTo(User::class, 'user_auth');
+    }
+    public function following(){
+        return $this->belongsTo(User::class, 'user_follower');
+    }
 }
