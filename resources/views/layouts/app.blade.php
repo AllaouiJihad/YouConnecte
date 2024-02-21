@@ -6,6 +6,7 @@
         <title>Youconnect</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ asset('css/msg.scss') }}">
 
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
@@ -92,7 +93,7 @@
                         </svg>
                       </button>
 
-                    <input type="search" name="search" placeholder="Search Twitter" class="bg-white-800 h-10 px-10 pr-5 w-full rounded-full text-sm focus:outline-none bg-purple-white shadow rounded border-0">
+                    <input type="search" name="search" placeholder="Search" class="bg-white-800 h-10 px-10 pr-5 w-full rounded-full text-sm focus:outline-none bg-purple-white shadow rounded border-0">
 
                 </div>
 
@@ -194,58 +195,60 @@
 
                 <!--third-people suggetion to follow section-->
 
-                <div class="max-w-sm rounded-lg bg-white-800 overflow-hidden shadow-lg m-4 mr-20">
-                    <div class="flex">
-                        <div class="flex-1 m-2">
-                            <h2 class="px-4 py-2 text-xl w-48 font-semibold text-blue">Who to follow</h2>
-                        </div>
-                    </div>
 
+<div class="max-w-sm rounded-lg bg-white-800 overflow-hidden shadow-lg m-4 mr-20">
+    <div class="flex">
+        <div class="flex-1 m-2">
+            <h2 class="px-4 py-2 text-xl w-48 font-semibold text-blue">Who to follow</h2>
+        </div>
+    </div>
 
-                    <hr class="border-gray-600">
+    <hr class="border-gray-600">
 
-                    <!--second person who to follow-->
-
-                    <div class="flex flex-shrink-0">
-                        <div class="flex-1 ">
-                            <div class="flex items-center w-48">
-                                <div>
-                                  <img class="inline-block h-10 w-auto rounded-full ml-4 mt-2" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
-                                </div>
-                                <div class="ml-3 mt-3">
-                                  <p class="text-base leading-6 font-medium text-blue">
-                                    Sonali Hirave
-                                  </p>
-                                  <p class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                    @ShonaDesign
-                                  </p>
-                                </div>
-                              </div>
-
-                        </div>
-                        <div class="flex-1 px-4 py-2 m-2">
-                            <a href="" class=" float-right">
-                                <button class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
-                                    Follow
-                                  </button>
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <hr class="border-gray-600">
-
-
-
-                    <!--show more-->
-
-                    <div class="flex">
-                        <div class="flex-1 p-4">
-                            <h2 class="px-4 ml-2 w-48 font-bold text-blue-400">Show more</h2>
-                        </div>
-                    </div>
-
+    <!-- User Card -->
+    @foreach($users as $user)
+    <div class="flex flex-shrink-0">
+        <div class="flex-1">
+            <div class="flex items-center w-48">
+                <div class="ml-3 mt-3">
+                    <p class="text-base leading-6 font-medium text-blue">{{ $user->name }}</p>
+                    <p class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">{{ '@' . $user->username }}</p>
                 </div>
+            </div>
+        </div>
+        <div class="flex-1 px-4 py-2 m-2">
+            {{-- @if(auth()->user()->following->contains($user)) --}}
+                <form action="{{ route('user.unfollow', $user) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 border border-red-500 hover:border-transparent rounded-full">
+                        Unfollow
+                    </button>
+                </form>
+            {{-- @else --}}
+                <form action="{{ route('user.follow', $user) }}" method="POST">
+                    {{-- @csrf --}}
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded-full">
+                        Follow
+                    </button>
+                </form>
+            {{-- @endif --}}
+        </div>
+    </div>
+    @endforeach
+    <!-- End User Card -->
+
+    <hr class="border-gray-600">
+
+    <!-- Show more -->
+    <div class="flex">
+        <div class="flex-1 p-4">
+            <h2 class="px-4 ml-2 w-48 font-bold text-blue-400">Show more</h2>
+        </div>
+    </div>
+</div>
+
+
 
             <div class="flow-root m-6 inline">
                 <div class="flex-1">
