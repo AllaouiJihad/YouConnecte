@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -44,11 +45,14 @@ class User extends Authenticatable
     public function likes(){
         return $this->hasMany(Like::class);
     }
-    public function followers(){
-        return $this->hasMany(Followe::class, 'user_auth');
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followes', 'user_auth', 'user_follower');
     }
-    public function following(){
-        return $this->hasMany(Followe::class, 'user_follower');
+
+    public function followings(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followes', 'user_follower', 'user_auth');
     }
 
 }

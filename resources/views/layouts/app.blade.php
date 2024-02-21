@@ -224,8 +224,9 @@
 
                         </div>
                         <div class="flex-1 px-4 py-2 m-2">
-                            <a href="" class=" float-right">
-                                <button class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
+                            <a href="{{route('profil')}}" class=" float-right">
+                                <input type="hidden" value="{{$user->id}}">
+                                <button type="submit" class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
                                     Follow
                                   </button>
                             </a>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,3 +47,5 @@ Route::delete('/delete/{id}',[PostController::class,'delete'])->name('delete');
 Route::put('/update/{id}', [PostController::class, 'update'])->name('update');
 
 Route::get('/message',function(){return view('message');})->name('message');
+
+Route::get('/profile/{id}',[UserController::class,'profile'])->name('profile');
