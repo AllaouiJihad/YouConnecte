@@ -87,20 +87,26 @@
         <!-- User Photo -->
         <img class="h-24 w-24 rounded-full mb-4" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="">
         <!-- User Name -->
-        <h2 class="text-xl font-semibold text-blue">{{$posts[0]->user->name }}</h2>
+        <h2 class="text-xl font-semibold text-blue">{{$user->name }}</h2>
         <!-- User Email -->
-        <p class="text-gray-600">{{ $posts[0]->user->email }}</p>
-        <form action="{{}}" method="POST">
-            <input type="hidden" name="id" value="{{$posts[0]->user->id}}">
+        <p class="text-gray-600">{{ $user->email }}</p>
+        @if($user->followings->isEmpty())
+        <a href="{{route('addFollow',$user->id)}}">
         <button type="submit" class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
             Follow
           </button>
-        </form>
+        </a>
+        @else
+            <a href="{{route('deleteFollow',$user->id)}}">
+        <button type="submit" class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
+            Followed
+          </button>
+        </a>
+        @endif
     </div>
 
+
 @foreach($posts as $post)
-
-
 <!--first tweet start-->
 <div class="flex flex-shrink-0 p-4 pb-0">
     <a href="#" class="flex-shrink-0 group block">
