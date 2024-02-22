@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
@@ -57,3 +58,5 @@ Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->nam
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 Route::get('/profile/{id}',[UserController::class,'profile'])->name('profile_user');
+Route::get('/add/{id}',[FollowController::class, 'addFollow'])->name('addFollow');
+Route::get('/delete/{id}',[FollowController::class, 'deleteFollow'])->name('deleteFollow');

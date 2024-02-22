@@ -20,7 +20,7 @@ class PostController extends Controller
     }
     public function index(){
         $posts = Post::with('user')->with('likes')->get();
-        $users = User::where('id', '!=', Auth::id())->get();
+        $users = User::where('id', '!=', Auth::id())->with('followings')->get();
         $like_count=[];
         foreach($posts as $post){
             $like_count[$post->id] = Like::where('post_id',$post->id)->count();

@@ -206,6 +206,7 @@
 
                     <!--second person who to follow-->
                     @foreach($users as $user)
+                    @if($user->followings->isEmpty())
                     <div class="flex flex-shrink-0">
                         <div class="flex-1 ">
                             <div class="flex items-center w-48">
@@ -222,18 +223,24 @@
                                 </div>
                               </div>
 
-                        </div>
+                        </div> 
                         <div class="flex-1 px-4 py-2 m-2">
+                            
                             <a href="{{route('profile_user',$user->id)}}" class=" float-right">
+                               
                                 <button type="submit" class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
-                                    Follow
+                                    profile
                                   </button>
                             </a>
 
                         </div>
+                     
+                       
+
                     </div>
 
                     <hr class="border-gray-600">
+                    @endif
                     @endforeach
 
 
