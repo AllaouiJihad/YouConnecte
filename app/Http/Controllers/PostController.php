@@ -25,7 +25,7 @@ class PostController extends Controller
         foreach($posts as $post){
             $like_count[$post->id] = Like::where('post_id',$post->id)->count();
         }
-        
+
         return view('home', compact('posts', 'like_count','users'));
     }
     public function getPosts(){
@@ -58,7 +58,7 @@ class PostController extends Controller
     }
     public function getPost(string $id){
         $post = Post::with('comments')->where('id', $id)->first();
-        // dd($post); 
+        // dd($post);
         return view('post',compact('post'));
     }
 
@@ -73,7 +73,7 @@ class PostController extends Controller
 
     public function addLike(Request $request){
         $like = Like::where('user_id',Auth::id())->where('post_id',$request->input('post_id'))->first();
-       
+
         if($like){
             $like->delete();
         }
@@ -84,5 +84,26 @@ class PostController extends Controller
             $like->save();
         }
         return redirect()->route("welcome");
+    }
+
+    public function edit(Post $post)
+    {
+        // Assuming you have an 'edit' view to display the edit form
+        return view('posts.edit', compact('post'));
+    }
+
+    public function modifier(Request $request, Post $post)
+    {
+        // Validate the request data
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+
+        // Update the post content
+        $post->content = $request->input('content');
+        $post->save();
+
+        // Redirect back or wherever you need to go
+        return redirect()->route('profile')->with('success', 'Post updated successfully');
     }
 }

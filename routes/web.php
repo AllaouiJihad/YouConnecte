@@ -35,13 +35,11 @@ Route::post('/post', [PostController::class, 'addComment'])->name('comments.stor
 Route::post('/like',[PostController::class, 'addLike'])->name('like.store');
 
 
-
-
-
-Route::get('/profile',function(){return view('profile');})->name('profile');
-
 Route::get('/profile', [PostController::class,'getPosts']
 )->name('profile')->middleware('auth');
+Route::get('posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::put('posts/{post}', 'PostController@modifier')->name('posts.update');
+
 
 Route::delete('/delete/{id}',[PostController::class,'delete'])->name('delete');
 
