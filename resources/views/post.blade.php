@@ -116,6 +116,7 @@
         <form action="{{ route('comments.store') }}" method="post" class="mt-4">
             @csrf
             <input type="hidden" name="post_id" value="{{ $post->id }}">
+            <input type="hidden" name="user_id" value="{{$post->user->id}}">
             <div class="d-flex ">
             <div class="flex items-center">
                 <div class="flex-shrink-0">

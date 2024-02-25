@@ -28,35 +28,35 @@ Route::get('/signup', [AuthController::class, 'showRegister'])->name('register')
 Route::post('/signup', [AuthController::class, 'signup'])->name('register');
 Route::get('/signin', [AuthController::class, 'showLogin'])->name('signin');
 Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::get('/post/{id}', [PostController::class, 'getPost'])->name('getPost');
-Route::post('/post', [PostController::class, 'addComment'])->name('comments.store');
-Route::post('/like',[PostController::class, 'addLike'])->name('like.store');
-
-
+Route::get('/post/{id}', [PostController::class, 'getPost'])->name('getPost')->middleware('auth');
+Route::post('/post', [PostController::class, 'addComment'])->name('comments.store')->middleware('auth');
+Route::post('/like',[PostController::class, 'addLike'])->name('like.store')->middleware('auth');
 
 
 
-Route::get('/profile',function(){return view('profile');})->name('profile');
+
+
+Route::get('/profile',function(){return view('profile');})->name('profile')->middleware('auth');
 
 Route::get('/profile', [PostController::class,'getPosts']
 )->name('profile')->middleware('auth');
 
-Route::delete('/delete/{id}',[PostController::class,'delete'])->name('delete');
+Route::delete('/delete/{id}',[PostController::class,'delete'])->name('delete')->middleware('auth');
 
-Route::put('/update/{id}', [PostController::class, 'update'])->name('update');
+Route::put('/update/{id}', [PostController::class, 'update'])->name('update')->middleware('auth');
 
-Route::get('/message',function(){return view('message');})->name('message');
+Route::get('/message',function(){return view('message');})->name('message')->middleware('auth');
 
 // Route to follow a user
-Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow');
+Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow')->middleware('auth');
 
 // Route to unfollow a user
-Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
+Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow')->middleware('auth');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('auth');
 
-Route::get('/profile/{id}',[UserController::class,'profile'])->name('profile_user');
-Route::get('/add/{id}',[FollowController::class, 'addFollow'])->name('addFollow');
-Route::get('/delete/{id}',[FollowController::class, 'deleteFollow'])->name('deleteFollow');
+Route::get('/profile/{id}',[UserController::class,'profile'])->name('profile_user')->middleware('auth');
+Route::get('/add/{id}',[FollowController::class, 'addFollow'])->name('addFollow')->middleware('auth');
+Route::get('/delete/{id}',[FollowController::class, 'deleteFollow'])->name('deleteFollow')->middleware('auth');

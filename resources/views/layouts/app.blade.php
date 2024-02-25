@@ -113,12 +113,13 @@
 
 
                     <hr class="border-gray-600">
-
+                    @if($notifications)
                         <!--first trending tweet-->
+                        @foreach($notifications as $notification)
                     <div class="flex">
                         <div class="flex-1">
                             <p class="px-4 ml-2 mt-3 w-48 text-xs text-gray-400"></p>
-                            <h2 class="px-4 ml-2 w-48 font-bold text-blue"></h2>
+                            <h2 class="px-4 ml-2 w-48 font-bold text-blue">{{$notification->message}}</h2>
                             <p class="px-4 ml-2 mb-3 w-48 text-xs text-gray-400"></p>
 
                         </div>
@@ -129,57 +130,10 @@
                         </div>
                     </div>
                     <hr class="border-gray-600">
+                    @endforeach
+                    @endif
 
-                    <!--second trending tweet-->
-
-                    <div class="flex">
-                        <div class="flex-1">
-                            <p class="px-4 ml-2 mt-3 w-48 text-xs text-gray-400"></p>
-                            <h2 class="px-4 ml-2 w-48 font-bold text-blue"></h2>
-                            <p class="px-4 ml-2 mb-3 w-48 text-xs text-gray-400"></p>
-
-                        </div>
-                        <div class="flex-1 px-4 py-2 m-2">
-                            <a href="" class=" text-2xl rounded-full text-gray-400 hover:bg-white-800 hover:text-blue-300 float-right">
-                                <svg class="m-2 h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <hr class="border-gray-600">
-
-                    <!--third trending tweet-->
-
-                    <div class="flex">
-                        <div class="flex-1">
-                            <p class="px-4 ml-2 mt-3 w-48 text-xs text-gray-400"></p>
-                            <h2 class="px-4 ml-2 w-48 font-bold text-blue"></h2>
-                            <p class="px-4 ml-2 mb-3 w-48 text-xs text-gray-400"></p>
-
-                        </div>
-                        <div class="flex-1 px-4 py-2 m-2">
-                            <a href="" class=" text-2xl rounded-full text-gray-400 hover:bg-white-800 hover:text-blue-300 float-right">
-                                <svg class="m-2 h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <hr class="border-gray-600">
-
-                    <!--forth trending tweet-->
-
-                    <div class="flex">
-                        <div class="flex-1">
-                            <p class="px-4 ml-2 mt-3 w-48 text-xs text-gray-400"></p>
-                            <h2 class="px-4 ml-2 w-48 font-bold text-blue"></h2>
-                            <p class="px-4 ml-2 mb-3 w-48 text-xs text-gray-400"></p>
-
-                        </div>
-                        <div class="flex-1 px-4 py-2 m-2">
-                            <a href="" class=" text-2xl rounded-full text-gray-400 hover:bg-white-800 hover:text-blue-300 float-right">
-                                <svg class="m-2 h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <hr class="border-gray-600">
+                    
 
                     <!--show more-->
 

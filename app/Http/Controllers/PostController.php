@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Like;
+use App\Models\Notification;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,16 +19,22 @@ class PostController extends Controller
         $post->save();
         return redirect()->route("welcome");
     }
+
+
     public function index(){
         $posts = Post::with('user')->with('likes')->get();
+       
         $users = User::where('id', '!=', Auth::id())->with('followings')->get();
+        $notifications = Notification::where('user_id',Auth::id())->get();
         $like_count=[];
         foreach($posts as $post){
             $like_count[$post->id] = Like::where('post_id',$post->id)->count();
         }
         
-        return view('home', compact('posts', 'like_count','users'));
+        return view('home', compact('posts', 'like_count','users','notifications'));
     }
+
+
     public function getPosts(){
         $posts = Post::with('likes')->where('user_id', Auth::id())->get();
         return view('profile', compact('posts'));
@@ -56,10 +63,12 @@ class PostController extends Controller
 
         return redirect()->route('profile');
     }
+
     public function getPost(string $id){
         $post = Post::with('comments')->where('id', $id)->first();
         // dd($post); 
-        return view('post',compact('post'));
+        $users = User::where('id', '!=', Auth::id())->with('followings')->get();
+        return view('post',compact('post', 'users'));
     }
 
     public function addComment(Request $request){
@@ -68,6 +77,12 @@ class PostController extends Controller
         $comment->user_id = Auth::id();
         $comment->post_id = $request->input('post_id');
         $comment->save();
+        
+        Notification::create([
+            'user_id' => $request->input('user_id'),
+            'message' => Auth::user()->name. ' ' . 'has comment your post',
+            
+        ]);
         return redirect()->route("getPost",$comment->post_id);
     }
 
@@ -82,6 +97,11 @@ class PostController extends Controller
             $like->user_id = Auth::id();
             $like->post_id = $request->input('post_id');
             $like->save();
+            Notification::create([
+                'user_id' => $request->input('user_id'),
+                'message' => Auth::user()->name. ' ' . 'has liked your post',
+                
+            ]);
         }
         return redirect()->route("welcome");
     }
