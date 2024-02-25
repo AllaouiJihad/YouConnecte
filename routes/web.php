@@ -32,6 +32,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/post/{id}', [PostController::class, 'getPost'])->name('getPost');
 Route::post('/post', [PostController::class, 'addComment'])->name('comments.store');
+Route::delete('/delete/{id}',[PostController::class,'deleteComment'])->name('deletecomment');
+
 Route::post('/like',[PostController::class, 'addLike'])->name('like.store');
 
 
