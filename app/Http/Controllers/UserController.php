@@ -9,11 +9,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // public function showProfile(){
-    //     return view('profile_user');
-    // }
-    public function profile($id){
-        $user=User::with('followings')->find($id);
+    public function showProfile(){
+        return view('profile_user');
+    }
+    public function profile(string $id){
         $posts = Post::with('user')->where('user_id',$id)->get();
         $data=[
             'user'=>$user,

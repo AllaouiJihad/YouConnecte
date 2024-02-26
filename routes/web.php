@@ -32,6 +32,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middle
 
 Route::get('/post/{id}', [PostController::class, 'getPost'])->name('getPost')->middleware('auth');
 Route::post('/post', [PostController::class, 'addComment'])->name('comments.store')->middleware('auth');
+Route::delete('/delete/{id}',[PostController::class,'deleteComment'])->name('deletecomment');
+
 Route::post('/like',[PostController::class, 'addLike'])->name('like.store')->middleware('auth');
 
 
@@ -42,6 +44,9 @@ Route::get('/profile',function(){return view('profile');})->name('profile')->mid
 
 Route::get('/profile', [PostController::class,'getPosts']
 )->name('profile')->middleware('auth');
+Route::get('posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::put('posts/{post}', 'PostController@modifier')->name('posts.update');
+
 
 Route::delete('/delete/{id}',[PostController::class,'delete'])->name('delete')->middleware('auth');
 

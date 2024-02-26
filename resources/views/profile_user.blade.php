@@ -95,14 +95,7 @@
         <button type="submit" class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
             Follow
           </button>
-        </a>
-        @else 
-            <a href="{{route('deleteFollow',$user->id)}}">
-        <button type="submit" class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
-            Followed
-          </button>
-        </a>
-        @endif
+        </form>
     </div>
 
 

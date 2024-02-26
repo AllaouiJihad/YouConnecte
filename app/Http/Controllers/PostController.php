@@ -47,22 +47,6 @@ class PostController extends Controller
     }
 
 
-    public function update(Request $request, $id)
-    {
-        $post = Post::find($id);
-
-        $request->validate([
-            'content' => 'required',
-
-        ]);
-
-        $post->update([
-            "content" => $request->content,
-
-        ]);
-
-        return redirect()->route('profile');
-    }
 
     public function getPost(string $id){
         $post = Post::with('comments')->where('id', $id)->first();
@@ -88,7 +72,7 @@ class PostController extends Controller
 
     public function addLike(Request $request){
         $like = Like::where('user_id',Auth::id())->where('post_id',$request->input('post_id'))->first();
-       
+
         if($like){
             $like->delete();
         }
@@ -105,4 +89,32 @@ class PostController extends Controller
         }
         return redirect()->route("welcome");
     }
+
+    public function edit(Post $post)
+    {
+        // Assuming you have an 'edit' view to display the edit form
+        return view('posts.edit', compact('post'));
+    }
+
+    public function modifierPost(Request $request, Post $post)
+    {
+        // Validate the request data
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+
+        // Update the post content
+        $post->content = $request->input('content');
+        $post->save();
+
+        // Redirect back or wherever you need to go
+        return redirect()->route('profile')->with('success', 'Post updated successfully');
+    }
+    public function deleteComment($id)
+    {
+        $post = Comment::find($id);
+        $post->delete();
+        return redirect()->route('home');
+    }
+
 }
