@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
@@ -31,10 +33,10 @@ Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::get('/post/{id}', [PostController::class, 'getPost'])->name('getPost')->middleware('auth');
-Route::post('/post', [PostController::class, 'addComment'])->name('comments.store')->middleware('auth');
-Route::delete('/delete/{id}',[PostController::class,'deleteComment'])->name('deletecomment');
+Route::post('/post', [CommentController::class, 'addComment'])->name('comments.store')->middleware('auth');
+Route::delete('/delete/{id}',[CommentController::class,'deleteComment'])->name('deletecomment');
 
-Route::post('/like',[PostController::class, 'addLike'])->name('like.store')->middleware('auth');
+Route::post('/like',[LikeController::class, 'addLike'])->name('like.store')->middleware('auth');
 
 
 
