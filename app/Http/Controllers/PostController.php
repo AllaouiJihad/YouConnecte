@@ -114,7 +114,7 @@ class PostController extends Controller
     {
         $post = Comment::find($id);
         $post->delete();
-        return redirect()->route('home');
+        return redirect()->route('welcome');
     }
 
 }

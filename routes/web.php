@@ -65,3 +65,5 @@ Route::get('/users', [UserController::class, 'index'])->name('users.index')->mid
 Route::get('/profile/{id}',[UserController::class,'profile'])->name('profile_user')->middleware('auth');
 Route::get('/add/{id}',[FollowController::class, 'addFollow'])->name('addFollow')->middleware('auth');
 Route::get('/delete/{id}',[FollowController::class, 'deleteFollow'])->name('deleteFollow')->middleware('auth');
+
+Route::delete('/comment/{id}',[PostController::class, 'deleteComment'])->name('deleteComment')->middleware('auth');

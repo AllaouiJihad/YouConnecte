@@ -28,7 +28,6 @@ class UserController extends Controller
         if ($name === '') {
             $users = User::where('status', 'active')->get();
         } else {
-
             $users = User::where('name', 'like', '%' . $name . '%')
                 ->get();
         }

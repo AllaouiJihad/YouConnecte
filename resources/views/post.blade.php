@@ -102,7 +102,7 @@
                              </p>
                       </div>
                     <div class="text-sm text-gray-600">{{ $comment->content }}</div>
-                    <form action="{{ route('deletecomment', $comment->id) }}" method="post">
+                    <form action="{{ route('deleteComment', $comment->id) }}" method="post">
                         @method('DELETE')
                         @csrf
                         <button type="submit" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
