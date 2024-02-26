@@ -55,40 +55,9 @@ class PostController extends Controller
         return view('post',compact('post', 'users'));
     }
 
-    public function addComment(Request $request){
-        $comment = new Comment();
-        $comment->content = $request->input('content');
-        $comment->user_id = Auth::id();
-        $comment->post_id = $request->input('post_id');
-        $comment->save();
-        
-        Notification::create([
-            'user_id' => $request->input('user_id'),
-            'message' => Auth::user()->name. ' ' . 'has comment your post',
-            
-        ]);
-        return redirect()->route("getPost",$comment->post_id);
-    }
+    
 
-    public function addLike(Request $request){
-        $like = Like::where('user_id',Auth::id())->where('post_id',$request->input('post_id'))->first();
-
-        if($like){
-            $like->delete();
-        }
-        else{
-            $like = new Like();
-            $like->user_id = Auth::id();
-            $like->post_id = $request->input('post_id');
-            $like->save();
-            Notification::create([
-                'user_id' => $request->input('user_id'),
-                'message' => Auth::user()->name. ' ' . 'has liked your post',
-                
-            ]);
-        }
-        return redirect()->route("welcome");
-    }
+    
 
     public function edit(Post $post)
     {
@@ -110,11 +79,6 @@ class PostController extends Controller
         // Redirect back or wherever you need to go
         return redirect()->route('profile')->with('success', 'Post updated successfully');
     }
-    public function deleteComment($id)
-    {
-        $post = Comment::find($id);
-        $post->delete();
-        return redirect()->route('welcome');
-    }
+    
 
 }
