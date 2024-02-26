@@ -399,4 +399,54 @@ form.sign-in-form {
   }
 }
 
+.searchInput {
+    height: 100vh;
+    background: #EAEAEA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  #search {
+    width: 60%;
+    margin: auto;
+  }
+
+  #input input {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 100px;
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    font-weight: 700;
+  }
+
+  #search-responds ul {
+    padding: 0;
+  }
+
+  #search-responds ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    list-style: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #search-responds ul li img {
+    width: 20px; /* Adjust the width as desired */
+    height: 20px; /* Adjust the height as desired */
+    border-radius: 50%;
+  }
+
+  #search-responds ul li .info {
+    flex-grow: 1;
+  }
+
+  #search-responds ul li span {
+    font-weight: 700;
+  }
+
+  #search-responds ul li .follow-icon {
+    cursor: pointer;
+  }

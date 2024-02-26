@@ -6,6 +6,10 @@
         <title>Youconnect</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+          <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
@@ -79,13 +83,13 @@
                 <!--right menu-->
 
                 <div class="relative text-gray-300 w-80 p-5 pb-0 mr-16">
-                    <button type="submit" class="absolute ml-4 mt-3 mr-4">
+                    <button type="button"  data-bs-toggle="modal" data-bs-target="#searchModal" class="absolute ml-4 mt-3 mr-4">
                         <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">
                           <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"/>
                         </svg>
                       </button>
 
-                    <input type="search" name="search" placeholder="Search Twitter" class="bg-white-800 h-10 px-10 pr-5 w-full rounded-full text-sm focus:outline-none bg-purple-white shadow rounded border-0">
+                    <input type="butto" name="search" placeholder="Search" class="bg-white-800 h-10 px-10 pr-5 w-full rounded-full text-sm focus:outline-none bg-purple-white shadow rounded border-0">
 
                 </div>
 
@@ -126,7 +130,7 @@
                     @endforeach
                     @endif
 
-                    
+
 
                     <!--show more-->
 
@@ -170,19 +174,19 @@
                                 </div>
                               </div>
 
-                        </div> 
+                        </div>
                         <div class="flex-1 px-4 py-2 m-2">
-                            
+
                             <a href="{{route('profile_user',$user->id)}}" class=" float-right">
-                               
+
                                 <button type="submit" class="bg-blue-200 hover:bg-white-500 text-blue font-semibold hover:text-blue py-2 px-4 border border-white hover:border-transparent rounded-full">
                                     profile
                                   </button>
                             </a>
 
                         </div>
-                     
-                       
+
+
 
                     </div>
 
@@ -214,7 +218,45 @@
                 </div>
         </div>
 
-    <div/>
+    </div>
+    <div class="searchinput">
+      <!-- Modal -->
+      <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="searchModalLabel">Search</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Search content -->
+              <div id="search">
+                <div id="input">
+                  <input type="text" class="form-control" placeholder="Search ...">
+                </div>
+                <div id="search-responds">
+                    <ul>
+                        <li>
+                            <div class="info">
+                                <img class="inline-block h-10 w-auto rounded-full ml-4 mt-2" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
+                            <span>Philipp</span>
+                            <a href="#" class="follow-icon"><i class="fas fa-user-plus"></i></a>
+                          </div>
+                        </li>
+                        <!-- More list items here -->
+                      </ul>
+                </div>
+              </div>
+            </div>
+            <!-- No need for modal footer in this case -->
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Bootstrap JS (Optional if you want to use Bootstrap JavaScript features) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
 
     </body>
 </html>

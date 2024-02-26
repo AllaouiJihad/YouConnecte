@@ -120,13 +120,13 @@
                 </div>
 
                 <div class="flex-1 text-center py-2 m-2">
-                    
+
                     <button type="submit" class="w-12 mt-1 group flex items-center text-gray-500 px-3 py-2 text-base leading-6 font-medium rounded-full hover:bg-white-800 hover:text-blue-300">
                         <svg class="text-center h-7 w-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M2 21l4-4h14a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                           </svg>
 
-                            
+
                     </button>
                 </div>
 
