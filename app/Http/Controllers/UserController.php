@@ -21,4 +21,18 @@ class UserController extends Controller
         ];
         return view('profile_user', $data);
     }
+
+    public function searchUsers(Request $request)
+    {
+        $name = $request->input('name');
+        if ($name === '') {
+            $users = User::where('status', 'active')->get();
+        } else {
+
+            $users = User::where('name', 'like', '%' . $name . '%')
+                ->get();
+        }
+
+        return view('searchresult')->with(['users' => $users, 'keyword' => $name]);
+    }
 }

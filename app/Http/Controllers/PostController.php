@@ -24,14 +24,14 @@ class PostController extends Controller
     public function index(){
         $posts = Post::with('user')->with('likes')->get();
        
-        $users = User::where('id', '!=', Auth::id())->with('followings')->get();
-        $notifications = Notification::where('user_id',Auth::id())->get();
+        // $users = User::where('id', '!=', Auth::id())->with('followings')->get();
+        // $notifications = Notification::where('user_id',Auth::id())->get();
         $like_count=[];
         foreach($posts as $post){
             $like_count[$post->id] = Like::where('post_id',$post->id)->count();
         }
         
-        return view('home', compact('posts', 'like_count','users','notifications'));
+        return view('home', compact('posts', 'like_count'));
     }
 
 
